@@ -34,8 +34,7 @@ public class StartActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_start);
-        
+        setContentView(R.layout.activity_start);        
         makeTab();
     }
     
@@ -67,7 +66,7 @@ public class StartActivity extends TabActivity {
 	protected void dialog()
 	{
 		AlertDialog.Builder build=new Builder(StartActivity.this);
-		build.setMessage("确定要退出吗?");
+		build.setMessage("您确定要退出吗?");
 		build.setTitle("提示");
 		build.setPositiveButton("确认", new android.content.DialogInterface.OnClickListener()
 		{
