@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="24sp"
+        android:text="@string/register_title" />
+    
+    <TextView 
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/username" />
+    
+    <EditText 
+        android:id="@+id/rt_username"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:inputType="textCapCharacters" />
+
+    <TextView 
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/password" />
+    
+    <EditText 
+        android:id="@+id/rt_password"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:inputType="textPassword"/>
+    
+     <TextView 
+        android:id="@+id/password2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/password2" />
+    
+    <EditText 
+        android:id="@+id/rt_password2"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:inputType="textPassword"/>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/email" />
+    
+    <EditText 
+        android:id="@+id/rt_email"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:inputType="textEmailAddress"
+    	/>
+    
+    <Button 
+        android:id="@+id/b_startregister"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/start_register"
+        />
+    
+
+</LinearLayout>

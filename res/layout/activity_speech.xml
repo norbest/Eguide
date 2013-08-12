@@ -1,0 +1,119 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="startSpeech"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".SpeechActivity" >
+
+    <EditText
+        android:id="@+id/editTextInput"
+        android:layout_width="wrap_content"
+        android:layout_height="160dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:ems="10" 
+        android:inputType="textMultiLine">
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textViewSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/seekBarSpeed"
+        android:layout_below="@+id/editTextInput"
+        android:text="@string/speed" />
+
+    <TextView
+        android:id="@+id/textViewPitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/seekBarPitch"
+        android:layout_below="@id/seekBarSpeed"
+        android:text="@string/textviewPitch" />
+
+    <SeekBar
+        android:id="@+id/seekBarSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextInput"
+        android:layout_below="@+id/textViewSpeed" />
+
+    <SeekBar
+        android:id="@+id/seekBarPitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/seekBarSpeed"
+        android:layout_below="@+id/textViewPitch" />
+
+    <Spinner
+        android:id="@+id/spinnerVCN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBarPitch"
+        android:layout_toRightOf="@+id/textViewVCN" />
+
+    <Button
+        android:id="@+id/buttonPauseResume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/spinnerVCN"
+        android:layout_below="@+id/spinnerVCN"
+        android:layout_toRightOf="@+id/buttonStart"
+        android:onClick="pauseOrResume"
+        android:text="pause" />
+
+    <Button
+        android:id="@+id/buttonShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonStart"
+        android:layout_below="@+id/buttonStart"
+        android:onClick="startSpeech"
+        android:text="前台播放" />
+
+    <TextView
+        android:id="@+id/textViewVCN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/toggleButtonBGM"
+        android:layout_toRightOf="@+id/toggleButtonBGM"
+        android:text="@string/textviewVCN" />
+
+    <TextView
+        android:id="@+id/textViewBGM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/toggleButtonBGM"
+        android:layout_alignBottom="@+id/toggleButtonBGM"
+        android:layout_alignParentLeft="true"
+        android:text="背景音乐" />
+
+    <ToggleButton
+        android:id="@+id/toggleButtonBGM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/spinnerVCN"
+        android:layout_toRightOf="@+id/textViewBGM"
+        android:textOn="开"
+		android:textOff="关"
+		android:checked="true"
+        android:text="ToggleButton" />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spinnerVCN"
+        android:hint="@string/textViewInputHint"
+        android:onClick="startSpeech"
+        android:text="@string/buttomStart" />
+
+</RelativeLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Eguide</string>
+    <string name="about">关于软件</string>
+    <string name="check_update">检查更新</string>
+    <string name="menu_option">选项</string>
+    <string name="exit">退出软件</string>
+    
+    <string name="locate_title">welcome to location module!</string>
+    <string name="latitude">纬度</string>
+    <string name="longitude">经度</string>
+    
+    <string name="shot_title">wecome to shot module!</string>
+    <string name="shot_btn">拍照</string>
+    
+    <string name="title_activity_speech">SpeechActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="buttomStart">后台播放</string>
+    <string name="textViewInputHint">Text to synthesize</string>
+    <string name="preference_default_tts_role">xiaoyu</string>
+    <string name="preference_key_tts_role">xiaoyu</string>
+    <string name="preference_key_tts_speed">60</string>
+    <string name="preference_key_tts_volume">60</string>
+    <string name="app_id">51efc487</string>
+    <string name="speed">语速</string>
+    <string name="textviewPitch">音量</string>
+    <string name="defaultText">中国故宫别称是紫禁城，占地72万多平方米，有楼宇8000余间，建筑面积15万平方米。故宫是明清两代的皇宫，是我国现存最大最完整的古建筑群。</string>
+    <string name="textviewVCN">人声角色</string>
+    
+    <string name="login_title">登录界面</string>
+    <string name="register_title">注册界面</string>
+    <string name="login">登录</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="password2">确认密码</string>
+    <string name="register">免费注册</string>
+    <string name="start_register">注册</string>
+    <string name="email">邮箱</string>
+
+</resources>
