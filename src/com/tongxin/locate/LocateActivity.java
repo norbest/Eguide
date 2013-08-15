@@ -1,5 +1,9 @@
 package com.tongxin.locate;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.baidu.mapapi.BMapManager;
@@ -9,15 +13,26 @@ import com.baidu.mapapi.MapController;
 import com.baidu.mapapi.MapView;
 import com.baidu.mapapi.Overlay;
 import com.tongxin.eguide.R;
+import com.tongxin.shot.ShotActivity;
 
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LocateActivity extends MapActivity
 {	//系统变量定义
@@ -25,10 +40,15 @@ public class LocateActivity extends MapActivity
 	private MapView mMapView=null;
     private List<Overlay> overlay=null;
     private MapController mMapController=null;
+    @SuppressLint("SimpleDateFormat")
+	public SimpleDateFormat    formatter  =   new    SimpleDateFormat    ("yyyyMMddHHmmss");
 
     public  TextView text;    
+    public Button btn_shot;
 
     boolean flag=false;
+    public String imgpath;
+    public String imgname;
     private double userLongitude = 33.49087222349736 * 1E6;// 纬度
     private double userLatitude = 115.27130064453128 * 1E6;// 经度
     public double prex=0;
@@ -57,6 +77,37 @@ public class LocateActivity extends MapActivity
 	      mMapController.setZoom(zoomer);  
 	      
 	      text=(TextView)findViewById(R.id.tv); 
+	      btn_shot=(Button)findViewById(R.id.b_shot);
+	      
+	        btn_shot.setOnClickListener(new OnClickListener()
+			{
+
+	        	public void onClick(View v)
+				{
+					String status=Environment.getExternalStorageState();
+					if(status.equals(Environment.MEDIA_MOUNTED))
+					{
+					try {
+					File dir=new File(Environment.getExternalStorageDirectory() + "/"+"Eguide");
+					if(!dir.exists())dir.mkdirs();
+					
+					Date    curDate    =   new    Date(System.currentTimeMillis());  
+					imgname    =    formatter.format(curDate)+".jpg";
+					 
+					Intent intent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+					File f=new File(dir, imgname);//localTempImgDir和localTempImageFileName是自己定义的名字
+					Uri u=Uri.fromFile(f);
+					intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
+					intent.putExtra(MediaStore.EXTRA_OUTPUT, u);
+					startActivityForResult(intent, 1);
+					} catch (ActivityNotFoundException  e) {
+					Toast.makeText(LocateActivity.this, "没有找到储存目录",Toast.LENGTH_LONG).show();  
+					}
+					}else{
+					Toast.makeText(LocateActivity.this, "没有储存卡",Toast.LENGTH_LONG).show();
+					}
+					}		
+			});
 	      
 	      //实现GPS状态改变监听方法
 	      LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -93,6 +144,7 @@ public class LocateActivity extends MapActivity
 		                	prex=userLatitude;
 		                }
 			        }
+			       
 			    }
 
 			    public void onProviderDisabled(String provider) {
@@ -111,6 +163,40 @@ public class LocateActivity extends MapActivity
 			locationManager.requestLocationUpdates(currentProvider, 2000, 0,locationListener);
 	      
 	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) 
+	{
+		if(resultCode==RESULT_OK )
+		{
+			switch(requestCode)
+			{
+				case 1:
+					File f=new File(Environment.getExternalStorageDirectory()
+							+"/"+"Eguide"+"/"+imgname);
+					try {
+						Uri u =Uri.parse(android.provider.MediaStore.Images.Media.insertImage(getContentResolver(),
+						f.getAbsolutePath(), null, null));
+						Log.i("path",u.toString());
+						imgpath=f.getAbsolutePath();
+						//u就是拍摄获得的原始图片的uri，可以对其进行进一步的处理
+				    	} catch (FileNotFoundException e) {
+				    		e.printStackTrace();
+				    	}
+					break;
+			}
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+		Bundle bundle=new Bundle();
+		bundle.putDouble("latitude", userLatitude);
+		bundle.putDouble("longitude",userLongitude);
+		bundle.putString("imgpath",imgpath);
+		
+		Intent intent = new Intent();				
+		intent.setClass(LocateActivity.this, ShotActivity.class);
+		intent.putExtras(bundle);
+		startActivity(intent);
+		LocateActivity.this.finish();
+	 }
 
 		protected void onDestroy() 
 		{

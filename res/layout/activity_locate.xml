@@ -8,9 +8,14 @@
         android:id="@+id/tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world"/>
-
+        android:text="@string/fetch_location"/>
     
+    <Button 
+        android:id="@+id/b_shot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shot_btn"/>
+    	
      <com.baidu.mapapi.MapView   
         android:id="@+id/bmapView"  
         android:layout_width="fill_parent"   

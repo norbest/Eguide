@@ -42,7 +42,8 @@
         </activity>
         <activity android:name="com.tongxin.locate.LocateActivity"></activity>
         <activity android:name="com.tongxin.speech.SpeechActivity"></activity>
-        <activity android:name="com.tongxin.shot.ShotActivity"></activity>
+        <activity android:name="com.tongxin.shot.ShotActivity"
+            android:theme="@style/test"></activity>
         <activity android:name="com.tongxin.login.LoginActivity"></activity>            
         <activity android:name="com.tongxin.login.RegisterActivity"></activity>
         <activity android:name="com.tongxin.eguide.OptionActivity"></activity>
